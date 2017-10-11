@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>PengBlog</title>
+  <title>糗事百科爬虫 | PengBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="凡是杀不死你的，最终只会让你变得更强">
-<meta property="og:type" content="website">
-<meta property="og:title" content="PengBlog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="使用python写一个糗事百科的爬虫，代码如下  # -*- coding:utf-8 -*-  import urllib.request import re   # 糗事百科爬虫类 class QSBK:     # 初始化方法，定义一些变量     def __init__(self):         # 当前页码         self.pageIndex = 1         #">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="糗事百科爬虫">
+<meta property="og:url" content="http://yoursite.com/2017/10/11/python1/index.html">
 <meta property="og:site_name" content="PengBlog">
-<meta property="og:description" content="凡是杀不死你的，最终只会让你变得更强">
+<meta property="og:description" content="使用python写一个糗事百科的爬虫，代码如下  # -*- coding:utf-8 -*-  import urllib.request import re   # 糗事百科爬虫类 class QSBK:     # 初始化方法，定义一些变量     def __init__(self):         # 当前页码         self.pageIndex = 1         #">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-11T09:01:57.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PengBlog">
-<meta name="twitter:description" content="凡是杀不死你的，最终只会让你变得更强">
+<meta name="twitter:title" content="糗事百科爬虫">
+<meta name="twitter:description" content="使用python写一个糗事百科的爬虫，代码如下  # -*- coding:utf-8 -*-  import urllib.request import re   # 糗事百科爬虫类 class QSBK:     # 初始化方法，定义一些变量     def __init__(self):         # 当前页码         self.pageIndex = 1         #">
   
     <link rel="alternative" href="/atom.xml" title="PengBlog" type="application/atom+xml">
   
@@ -28,9 +30,6 @@
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
-    
-    
-  
   
       <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
   
@@ -42,8 +41,8 @@
           rootUrl: '/',
           fancybox: true,
           animate: true,
-          isHome: true,
-          isPost: false,
+          isHome: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -207,9 +206,7 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-python1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-python1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/10/11/python1/" class="article-date">
@@ -225,12 +222,23 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/11/python1/">糗事百科爬虫</a>
+    <h1 class="article-title" itemprop="name">
+      糗事百科爬虫
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -357,175 +365,190 @@ if __name__ == &apos;__main__&apos;:
 </code></pre>
       
       
-    </div>
-    
-    <div class="article-info article-info-index">
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>支持作者</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
       
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/10/11/python1/">糗事百科爬虫</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Peng 的个人博客">Peng</a></p>
+        <p><span>发布时间:</span>2017年10月11日 - 16时57分</p>
+        <p><span>最后更新:</span>2017年10月11日 - 17时01分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/10/11/python1/" title="糗事百科爬虫">http://yoursite.com/2017/10/11/python1/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/10/11/python1/　　作者: Peng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/11/hexo2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Hexo+GitHub搭建个人博客（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/10/11/hexo2/" class="article-date">
-      <time datetime="2017-10-11T08:53:47.466Z" itemprop="datePublished">2017-10-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
     
-      <input type="hidden" class="isFancy" />
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
     
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'peng1136313078',
+      repo: 'peng1136313078.github.io',
+      oauth: {
+        client_id: 'd04c0b4497e8d396360c',
+        client_secret: '042678d8322e210c0d95fde0554833089a6920e1',
+      },
+    })
+    gitment.render('gitments')
+</script>
     
-      <header class="article-header">
+
+
+
+    <div class="scroll" id="post-nav-button">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/11/hexo2/">使用Hexo+GitHub搭建个人博客（二）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p>上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置</p>
-</blockquote>
-<ul>
-<li><p>配置网站基本信息<br>打开我们hexo工程目录下的_config.yml文件，可以看到一大堆配置内容，不过我们需要注意的就下面几项<br>title: 网站标题<br>subtitle: 副标题<br>description: 个人签名<br>author: 姓名<br>language: zh-Hans<br>这几项是我们需要修改的，可以根据自己的喜好改(language: zh-Hans 是中文)</p>
-</li>
-<li><p>修改网站主题<br>如果不喜欢hexo默认的主题，我们可以在github上搜索hexo theme，会有很多主题<br>进入详情页都有介绍，预览图，我们可以下载自己喜欢的主题后解压到hexo目录下的themes文件夹中<br>然后打开hexo工程目录下的_config.yml文件中的theme: spfk 为自己下载的主题（本站主题为spfk）</p>
-</li>
-<li><p>更新网站<br>修改完网站基本信息和主题后，在hexo目录下右键Git Bash Here，重新输入<br><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br>这样会在public文件夹中重新我们需要上传的最新的文件<br>然后把public里的所有文件重新复制到我们本地clone下来的github仓库（覆盖原有文件）<br>接下来打开GitHub for windows，发现Changes里面会有那些覆盖之后发生改变的文件<br>最后commit to master提交本地后点击Fetch origin按钮同步到github即可<br>打开浏览器入username.github.io，我们的个人博客果然变了</p>
-</li>
-<li><p>增加评论系统</p>
-</li>
-</ul>
-<ul>
-<li>绑定域名</li>
-</ul>
-
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/10/09/hexo1/" class="article-date">
-      <time datetime="2017-10-09T06:43:44.067Z" itemprop="datePublished">2017-10-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/09/hexo1/">使用Hexo+GitHub搭建个人博客（一）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <blockquote>
-<p>1.安装git<br> <a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-32-bit.exe" target="_blank" rel="external">Git-2.11.0.3-32-bit.exe</a><br> <a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-64-bit.exe" target="_blank" rel="external">Git-2.11.0.3-64-bit.exe</a><br> 选择下载对应自己电脑的版本即可</p>
-<p>2.安装nodejs<br> <a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x86.msi" target="_blank" rel="external">node-v4.2.3-x86.msi</a><br> <a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="external">node-v4.2.3-x64.msi</a><br> 安装完成后，打开cmd命令输入<br> <code>git --version</code><br> <code>node -v</code><br> <code>npm -v</code><br> 可以依次查看到git，nodejs和npm的版本</p>
-<p>3.安装hexo<br> 上述操作无误的话，使用npm命令下载安装hexo，打开cmd输入<br> <code>npm install hexo-cli -g</code><br> 安装完成后，输入<br> <code>hexo -v</code><br> 检测是否安装成功</p>
-<p>4.创建GitHub Pages仓库<br> 全部安装完成后，就需要在github创建远程库<br> 注册登录后点击“+”号，选择New repository<br> 然后在Repository name中写入username.github.io(username是你的github用户名，必须完全一致)<br> 最后Create repository就创建完成了<br> 现在我们就可以在浏览器输入username.github.io访问网站<br> 当然，现在会出现404的页面，因为我们还没有配置页面 </p>
-<p>5.创建hexo工程<br> 在电脑中创建一个空的文件夹，用来hexo工程<br> 右键这个文件夹，选择Git Bash Here，git窗口启动后输入<br> <code>npm install hexo --save</code><br> 然后初始化hexo，依次输入<br> <code>hexo init</code><br> <code>npm install</code><br> <code>hexo g</code><br> 执行完成后，hexo就初始化完毕了，我们可以输入<br> <code>hexo s</code><br> 启动一个本地服务器，打开浏览器输入<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>就可以看到我们现在的博客页面</p>
-<p>6.把hexo上传到github<br> 接下来把我们本地的hexo项目上传到github我们就可以通过username.github.io访问到我们的个人博客了<br> 要怎么做呢？首先还是在hexo文件夹下Git Bash Here，输入<br> <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br> 清空并生成最新的我们需要上传的文件<br> 然后我们需要下载一个GitHub for windows,然后登录github账号<br> 登陆后选择clone repository，然后把我们之前在github创建的username.github.io仓库clone到本地<br> 现在clone下来的仓库应该是空的，因为我们没有上传任何东西<br> 然后我们把hexo文件夹下的public中的所有文件和文件夹复制粘贴到我们clone下的仓库目录中<br> 然后打开GitHub for windows，会发现Changes里面会有我们刚刚复制进来的文件和文件夹<br> 接下来在下面的Summary输入内容，点击Commit to master提交本地<br> 最后点击Fetch origin按钮把我们刚刚提交的内容同步到github仓库中<br> 现在我们打开github查看是否有我们刚刚上传的文件<br> 如果没有问题的话，打开浏览器输入username.github.io就可以看到我们的个人博客了</p>
-</blockquote>
-
-      
-      
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/10/11/hexo2/" title="下一篇: 使用Hexo+GitHub搭建个人博客（二）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/11/python1/">糗事百科爬虫</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/11/hexo2/">使用Hexo+GitHub搭建个人博客（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/09/hexo1/">使用Hexo+GitHub搭建个人博客（一）</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
 
-
-
-  
-  
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
