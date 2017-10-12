@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   
   <title>PengBlog</title>
+  <meta name="baidu-site-verification" content="gViN285Wwz" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="凡是杀不死你的，最终只会让你变得更强">
 <meta property="og:type" content="website">
@@ -236,125 +237,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>使用python写一个糗事百科的爬虫，代码如下</p>
-</blockquote>
-<pre><code># -*- coding:utf-8 -*-
-
-import urllib.request
-import re
-
-
-# 糗事百科爬虫类
-class QSBK:
-    # 初始化方法，定义一些变量
-    def __init__(self):
-        # 当前页码
-        self.pageIndex = 1
-        # 模拟浏览器的user_agent
-        self.user_agent = &apos;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36&apos;
-        # 初始化headers
-        self.headers = {&apos;User-Agent&apos;: self.user_agent}
-        # 存放每页段子的列表，每一个元素是每一页的段子们
-        self.stories = []
-        # 保存数据的文件
-        self.file = open(&quot;qsbk.txt&quot;, &quot;w&quot;, encoding=&apos;utf-8&apos;)
-
-    def __del__(self):
-        self.file.close()
-
-    # 传入某一页的索引获得页面代码
-    def getPage(self, pageIndex):
-        try:
-            url = &apos;http://www.qiushibaike.com/hot/page/&apos; + str(pageIndex)
-            # 构建请求的request
-            req = urllib.request.Request(url, headers=self.headers)
-            # 利用urlopen获取页面代码
-            response = urllib.request.urlopen(req)
-            # 将页面转化为UTF-8编码
-            pageCode = response.read().decode(&apos;utf-8&apos;)
-            return pageCode
-        except Exception as e:
-            if hasattr(e, &quot;reason&quot;):
-                print(u&quot;连接糗事百科失败,错误原因：&quot;, e.reason)
-                return None
-
-    # 传入某一页代码，返回本页不带图片的段子列表
-    def getPageItems(self, pageIndex):
-        pageCode = self.getPage(pageIndex)
-        if not pageCode:
-            print(&quot;页面加载失败....&quot;)
-            return None
-        pattern = re.compile(&apos;&lt;div.*?class=&quot;author.*?&gt;.*?&lt;a.*?&lt;/a&gt;.*?&lt;a.*?&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;a href=&quot;(.*?)&quot;.*?&lt;div.*?class=&quot;content&quot;.*?&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;(.*?)&lt;/a&gt;(.*?)&lt;div class=&quot;stats.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)
-        # print pageCode
-        items = re.findall(pattern, pageCode)
-        # 用来存储每页的段子们
-        pageStories = []
-        # 遍历正则表达式匹配的信息
-        for item in items:
-            # 判断是否已经展示全文
-            isAll = re.search(&apos;&lt;span class=&quot;contentForAll&quot;&gt;&apos;, item[3])
-            content = item[2].strip()
-            if isAll is not None:
-                # 从段子详情页获取完整的段子
-                url = &apos;http://www.qiushibaike.com&apos;+item[1]
-                requ = urllib.request.Request(url, headers=self.headers)
-                response = urllib.request.urlopen(requ)
-                contentCode = response.read().decode(&apos;utf-8&apos;)
-                contentPattern = re.compile(&apos;&lt;div class=&quot;content&quot;&gt;(.*?)&lt;/div&gt;&apos;, re.S)
-                content = re.findall(contentPattern, contentCode)[0].strip()
-                content.replace(&quot;\n&quot;, &quot;&lt;br/&gt;&quot;)
-            # 判断是否有图片
-            imgSrc = re.findall(&apos;&lt;img src=&quot;//(.*?)&quot;&apos;, item[4])
-            if not imgSrc:
-                # 不包含图片
-                # 作者 内容 图片链接 赞数
-                pageStories.append([item[0].strip(), content, &quot;&quot;, item[5].strip()])
-            else:
-                pageStories.append([item[0].strip(), content, imgSrc[0].strip(), item[5].strip()])
-        return pageStories
-
-    # 加载并提取页面的内容，加入到列表中
-    def loadPage(self):
-        # 获取新一页
-        pageStories = self.getPageItems(self.pageIndex)
-        # 将该页的段子存放到全局list中
-        if pageStories:
-            self.stories.append(pageStories)
-
-    def printStory(self, pageStories, page):
-        # 遍历一页的段子
-        for story in pageStories:
-            if story[2] == &quot;&quot;:
-                # 无图段子
-                self.file.write(u&apos;{&quot;author&quot;:&quot;%s&quot;,&quot;content&quot;:&quot;%s&quot;,&quot;type&quot;:&quot;110&quot;}\n&apos; % (story[0], story[1]))
-                print(u&quot;第%d页\t发布人:%s\n%s\n赞:%s\n&quot; % (page, story[0], story[1], story[3]))
-            else:
-                # 有图段子
-                self.file.write(u&apos;{&quot;author&quot;:&quot;%s&quot;,&quot;content&quot;:&quot;%s&quot;,&quot;img&quot;:&quot;%s&quot;,&quot;type&quot;:&quot;100&quot;}\n&apos; % (story[0], story[1], story[2]))
-                print(u&quot;第%d页\t发布人:%s\n%s\n图片:%s\n赞:%s\n&quot; % (page, story[0], story[1], story[2], story[3]))
-
-    # 开始方法
-    def start(self):
-        print(u&quot;正在读取糗事百科,请稍后...&quot;)
-        while self.pageIndex &lt;= 13:
-            # 加载内容
-            self.loadPage()
-            # 从全局list中获取一页的段子
-            pageStories = self.stories[0]
-            # 将全局list中第一个元素删除，因为已经取出
-            del self.stories[0]
-            # 输出该页的段子
-            self.printStory(pageStories, self.pageIndex)
-            # 获取完之后页码索引加一，表示下次读取下一页
-            self.pageIndex += 1
-        else:
-            print(&quot;完毕&quot;)
-
-if __name__ == &apos;__main__&apos;:
-    spider = QSBK()
-    spider.start()
-</code></pre>
+              <blockquote>
+<p>python是一款功能强大，易学易用的编程语言，它的设计哲学是“优雅”、“明确”、“简单”，所以 人生苦短，我用python。<br>  下面是用python写的一个爬去糗事百科段子的爬虫，可以爬到糗事百科的段子、作者及图片url。<br>
+          
       
       
     </div>
@@ -368,6 +253,10 @@ if __name__ == &apos;__main__&apos;:
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2017/10/11/python1/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -412,23 +301,9 @@ if __name__ == &apos;__main__&apos;:
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置</p>
-</blockquote>
-<ul>
-<li><p>配置网站基本信息<br>打开我们hexo工程目录下的_config.yml文件，可以看到一大堆配置内容，不过我们需要注意的就下面几项<br>title: 网站标题<br>subtitle: 副标题<br>description: 个人签名<br>author: 姓名<br>language: zh-Hans<br>这几项是我们需要修改的，可以根据自己的喜好改(language: zh-Hans 是中文)</p>
-</li>
-<li><p>修改网站主题<br>如果不喜欢hexo默认的主题，我们可以在github上搜索hexo theme，会有很多主题<br>进入详情页都有介绍，预览图，我们可以下载自己喜欢的主题后解压到hexo目录下的themes文件夹中<br>然后打开hexo工程目录下的_config.yml文件中的theme: spfk 为自己下载的主题（本站主题为spfk）</p>
-</li>
-<li><p>更新网站<br>修改完网站基本信息和主题后，在hexo目录下右键Git Bash Here，重新输入<br><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br>这样会在public文件夹中重新我们需要上传的最新的文件<br>然后把public里的所有文件重新复制到我们本地clone下来的github仓库（覆盖原有文件）<br>接下来打开GitHub for windows，发现Changes里面会有那些覆盖之后发生改变的文件<br>最后commit to master提交本地后点击Fetch origin按钮同步到github即可<br>打开浏览器入username.github.io，我们的个人博客果然变了</p>
-</li>
-<li><p>增加评论系统</p>
-</li>
-</ul>
-<ul>
-<li>绑定域名</li>
-</ul>
-
+              <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a><strong>写在前面</strong></h3><blockquote>
+<p>上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置，美化我们的博客和增强博客的功能。<br>
+          
       
       
     </div>
@@ -442,6 +317,10 @@ if __name__ == &apos;__main__&apos;:
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2017/10/11/hexo2/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -486,15 +365,9 @@ if __name__ == &apos;__main__&apos;:
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>1.安装git<br> <a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-32-bit.exe" target="_blank" rel="external">Git-2.11.0.3-32-bit.exe</a><br> <a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-64-bit.exe" target="_blank" rel="external">Git-2.11.0.3-64-bit.exe</a><br> 选择下载对应自己电脑的版本即可</p>
-<p>2.安装nodejs<br> <a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x86.msi" target="_blank" rel="external">node-v4.2.3-x86.msi</a><br> <a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="external">node-v4.2.3-x64.msi</a><br> 安装完成后，打开cmd命令输入<br> <code>git --version</code><br> <code>node -v</code><br> <code>npm -v</code><br> 可以依次查看到git，nodejs和npm的版本</p>
-<p>3.安装hexo<br> 上述操作无误的话，使用npm命令下载安装hexo，打开cmd输入<br> <code>npm install hexo-cli -g</code><br> 安装完成后，输入<br> <code>hexo -v</code><br> 检测是否安装成功</p>
-<p>4.创建GitHub Pages仓库<br> 全部安装完成后，就需要在github创建远程库<br> 注册登录后点击“+”号，选择New repository<br> 然后在Repository name中写入username.github.io(username是你的github用户名，必须完全一致)<br> 最后Create repository就创建完成了<br> 现在我们就可以在浏览器输入username.github.io访问网站<br> 当然，现在会出现404的页面，因为我们还没有配置页面 </p>
-<p>5.创建hexo工程<br> 在电脑中创建一个空的文件夹，用来hexo工程<br> 右键这个文件夹，选择Git Bash Here，git窗口启动后输入<br> <code>npm install hexo --save</code><br> 然后初始化hexo，依次输入<br> <code>hexo init</code><br> <code>npm install</code><br> <code>hexo g</code><br> 执行完成后，hexo就初始化完毕了，我们可以输入<br> <code>hexo s</code><br> 启动一个本地服务器，打开浏览器输入<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>就可以看到我们现在的博客页面</p>
-<p>6.把hexo上传到github<br> 接下来把我们本地的hexo项目上传到github我们就可以通过username.github.io访问到我们的个人博客了<br> 要怎么做呢？首先还是在hexo文件夹下Git Bash Here，输入<br> <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br> 清空并生成最新的我们需要上传的文件<br> 然后我们需要下载一个GitHub for windows,然后登录github账号<br> 登陆后选择clone repository，然后把我们之前在github创建的username.github.io仓库clone到本地<br> 现在clone下来的仓库应该是空的，因为我们没有上传任何东西<br> 然后我们把hexo文件夹下的public中的所有文件和文件夹复制粘贴到我们clone下的仓库目录中<br> 然后打开GitHub for windows，会发现Changes里面会有我们刚刚复制进来的文件和文件夹<br> 接下来在下面的Summary输入内容，点击Commit to master提交本地<br> 最后点击Fetch origin按钮把我们刚刚提交的内容同步到github仓库中<br> 现在我们打开github查看是否有我们刚刚上传的文件<br> 如果没有问题的话，打开浏览器输入username.github.io就可以看到我们的个人博客了</p>
-</blockquote>
-
+              <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a><strong>写在前面</strong></h3><blockquote>
+<p>最近自己使用Hexo+GitHub搭建了自己的个人博客，在搭建时也看了很多博客，踩了不少坑，所以记录一些自己的心得，希望可以帮助到更多人。<br>
+          
       
       
     </div>
@@ -508,6 +381,10 @@ if __name__ == &apos;__main__&apos;:
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2017/10/09/hexo1/#more">查看更多 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -592,6 +469,32 @@ if __name__ == &apos;__main__&apos;:
 </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 

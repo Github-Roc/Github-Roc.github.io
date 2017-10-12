@@ -5,18 +5,23 @@
   
   <title>使用Hexo+GitHub搭建个人博客（二） | PengBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置   配置网站基本信息打开我们hexo工程目录下的_config.yml文件，可以看到一大堆配置内容，不过我们需要注意的就下面几项title: 网站标题subtitle: 副标题description: 个人签名author: 姓名language: zh-Hans这几项是我们需要修改的，可以根据自己的喜好改(language:">
+  <meta name="description" content="写在前面 上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置，美化我们的博客和增强博客的功能。">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Hexo+GitHub搭建个人博客（二）">
 <meta property="og:url" content="http://yoursite.com/2017/10/11/hexo2/index.html">
 <meta property="og:site_name" content="PengBlog">
-<meta property="og:description" content="上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置   配置网站基本信息打开我们hexo工程目录下的_config.yml文件，可以看到一大堆配置内容，不过我们需要注意的就下面几项title: 网站标题subtitle: 副标题description: 个人签名author: 姓名language: zh-Hans这几项是我们需要修改的，可以根据自己的喜好改(language:">
+<meta property="og:description" content="写在前面 上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置，美化我们的博客和增强博客的功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-11T09:32:45.547Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfj7i6s8gj30fz03j0sp.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfj4h0u6gj30d802l745.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfislh6ulj30o80c6751.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfistp1blj30lm0ibmyd.jpg">
+<meta property="og:updated_time" content="2017-10-12T08:16:03.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo+GitHub搭建个人博客（二）">
-<meta name="twitter:description" content="上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置   配置网站基本信息打开我们hexo工程目录下的_config.yml文件，可以看到一大堆配置内容，不过我们需要注意的就下面几项title: 网站标题subtitle: 副标题description: 个人签名author: 姓名language: zh-Hans这几项是我们需要修改的，可以根据自己的喜好改(language:">
+<meta name="twitter:description" content="写在前面 上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置，美化我们的博客和增强博客的功能。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfj7i6s8gj30fz03j0sp.jpg">
   
     <link rel="alternative" href="/atom.xml" title="PengBlog" type="application/atom+xml">
   
@@ -244,22 +249,24 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置</p>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a><strong>写在前面</strong></h3><blockquote>
+<p>上一篇我们已经搭建好了自己的个人博客，现在我们来讲讲里面的一些配置，美化我们的博客和增强博客的功能。<br><a id="more"></a></p>
 </blockquote>
-<ul>
-<li><p>配置网站基本信息<br>打开我们hexo工程目录下的_config.yml文件，可以看到一大堆配置内容，不过我们需要注意的就下面几项<br>title: 网站标题<br>subtitle: 副标题<br>description: 个人签名<br>author: 姓名<br>language: zh-Hans<br>这几项是我们需要修改的，可以根据自己的喜好改(language: zh-Hans 是中文)</p>
-</li>
-<li><p>修改网站主题<br>如果不喜欢hexo默认的主题，我们可以在github上搜索hexo theme，会有很多主题<br>进入详情页都有介绍，预览图，我们可以下载自己喜欢的主题后解压到hexo目录下的themes文件夹中<br>然后打开hexo工程目录下的_config.yml文件中的theme: spfk 为自己下载的主题（本站主题为spfk）</p>
-</li>
-<li><p>更新网站<br>修改完网站基本信息和主题后，在hexo目录下右键Git Bash Here，重新输入<br><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br>这样会在public文件夹中重新我们需要上传的最新的文件<br>然后把public里的所有文件重新复制到我们本地clone下来的github仓库（覆盖原有文件）<br>接下来打开GitHub for windows，发现Changes里面会有那些覆盖之后发生改变的文件<br>最后commit to master提交本地后点击Fetch origin按钮同步到github即可<br>打开浏览器入username.github.io，我们的个人博客果然变了</p>
-</li>
-<li><p>增加评论系统</p>
-</li>
-</ul>
-<ul>
-<li>绑定域名</li>
-</ul>
+<h3 id="配置网站基本信息"><a href="#配置网站基本信息" class="headerlink" title="配置网站基本信息"></a>配置网站基本信息</h3><blockquote>
+<p>打开我们hexo工程目录下的_config.yml文件，可以看到一大堆配置内容，不过我们需要注意的就下面几项<br> title: 网站标题<br> subtitle: 副标题<br> description: 个人签名<br> author: 姓名<br> language: zh-Hans<br> 这几项是我们需要修改的，可以根据自己的喜好改(language: zh-Hans 是中文)<br> <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfj7i6s8gj30fz03j0sp.jpg" alt="hexo2-1-1" title="hexo2-1-1.png"></p>
+</blockquote>
+<h3 id="修改网站主题"><a href="#修改网站主题" class="headerlink" title="修改网站主题"></a>修改网站主题</h3><blockquote>
+<p>如果不喜欢hexo默认的主题，我们可以在github上搜索hexo theme，会有很多主题<br> 进入详情页都有介绍，预览图，我们可以下载自己喜欢的主题后解压到hexo目录下的themes文件夹中<br> 然后打开hexo工程目录下的_config.yml文件，修改theme为我们下载的主题（本站主题为spfk）<br> <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfj4h0u6gj30d802l745.jpg" alt="hexo2-2-1" title="hexo2-2-1.png"></p>
+</blockquote>
+<h3 id="更新网站"><a href="#更新网站" class="headerlink" title="更新网站"></a>更新网站</h3><blockquote>
+<p>修改完网站基本信息和主题后，在hexo目录下右键Git Bash Here，重新输入<br> <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br> 这样会在public文件夹中重新我们需要上传的最新的文件<br> 然后把public里的所有文件重新复制到我们本地clone下来的github仓库（覆盖原有文件）<br> 接下来打开GitHub for windows，发现Changes里面会有那些覆盖之后发生改变的文件<br> 最后commit to master提交本地后点击Fetch origin按钮同步到github即可<br> 打开浏览器入username.github.io，我们的个人博客果然变了</p>
+</blockquote>
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><blockquote>
+<p>首先我们需要买一个域名，<a href="https://dnspod.cloud.tencent.com/" target="_blank" rel="external">腾讯云</a>，<a href="https://wanwang.aliyun.com/" target="_blank" rel="external">阿里云</a>等都可以。<br>  拿到域名之后，进行解析，推荐使用<a href="https://www.dnspod.cn/" target="_blank" rel="external">dnspod</a>免费解析。<br>  进入网站注册登录后，点击域名解析选项，添加好域名后，增加俩条记录，如下图。<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfislh6ulj30o80c6751.jpg" alt="hexo2-4-1" title="hexo2-4-1.png"><br>  然后登录你注册域名网站的管理后台，修改DNS解析地址为<br>  <code>f1g1ns1.dnspod.net</code><br>  <code>f1g1ns2.dnspod.net</code><br>  最后登录<a href="https://github.com/" target="_blank" rel="external">github</a>，找到项目，点击Settings，找到GitHub Pages，输入域名，Save即可<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfistp1blj30lm0ibmyd.jpg" alt="hexo2-4-2" title="hexo2-4-2.png"><br>  如果延迟的话，可能解析立马不会生效，需要等会儿才能看到。</p>
+</blockquote>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><blockquote>
+<p><a href="http://blog.csdn.net/wapchief/article/details/54602515" target="_blank" rel="external">使用hexo+github免费搭建个人博客网站超详细教程</a><br>  增加评论功能可以参考下文<br>  <a href="http://www.jianshu.com/p/10134c474991" target="_blank" rel="external">Hexo博客框架下Gitment取代多说评论</a></p>
+</blockquote>
 
       
       
@@ -318,7 +325,7 @@
         <p><span>本文标题:</span><a href="/2017/10/11/hexo2/">使用Hexo+GitHub搭建个人博客（二）</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Peng 的个人博客">Peng</a></p>
         <p><span>发布时间:</span>2017年10月11日 - 16时53分</p>
-        <p><span>最后更新:</span>2017年10月11日 - 17时32分</p>
+        <p><span>最后更新:</span>2017年10月12日 - 16时16分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/10/11/hexo2/" title="使用Hexo+GitHub搭建个人博客（二）">http://yoursite.com/2017/10/11/hexo2/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/10/11/hexo2/　　作者: Peng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -356,7 +363,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置网站基本信息"><span class="toc-number">2.</span> <span class="toc-text">配置网站基本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改网站主题"><span class="toc-number">3.</span> <span class="toc-text">修改网站主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新网站"><span class="toc-number">4.</span> <span class="toc-text">更新网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定域名"><span class="toc-number">5.</span> <span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文章"><span class="toc-number">6.</span> <span class="toc-text">参考文章</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -524,6 +531,32 @@
 </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 

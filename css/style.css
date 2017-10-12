@@ -3660,7 +3660,7 @@ a.gitment-editor-footer-tip:hover {
 }
 .article-entry pre,
 .article-entry .highlight {
-  background: #002b36;
+  background: #00285b;
   margin: 10px 0;
   padding: 10px 10px;
   overflow: auto;
@@ -3669,7 +3669,7 @@ a.gitment-editor-footer-tip:hover {
 }
 .article-entry .highlight .gutter pre,
 .article-entry .gist .gist-file .gist-data .line-numbers {
-  color: #9e90ff;
+  color: #9ff;
 }
 .article-entry pre,
 .article-entry code {
@@ -3872,7 +3872,7 @@ a.gitment-editor-footer-tip:hover {
 }
 .article-entry .highlight figcaption {
   font-size: 0.85em;
-  color: #75715e;
+  color: #7285b7;
   line-height: 1em;
   margin-bottom: 1em;
 }
@@ -3903,7 +3903,7 @@ a.gitment-editor-footer-tip:hover {
   border-style: solid;
   border-color: #ddd;
   border-width: 1px 0;
-  background: #002b36;
+  background: #00285b;
   padding: 15px 20px 15px 0;
 }
 .article-entry .gist .gist-file {
@@ -3929,8 +3929,8 @@ a.gitment-editor-footer-tip:hover {
   border: none;
 }
 .article-entry .gist .gist-file .gist-meta {
-  background: #002b36;
-  color: #75715e;
+  background: #00285b;
+  color: #7285b7;
   font: 0.85em "Lucida Grande", Verdana, "Helvetica Neue", Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
@@ -3965,10 +3965,10 @@ pre .command {
   color: #258fb8;
 }
 pre .comment {
-  color: #75715e;
+  color: #7285b7;
 }
 pre .keyword {
-  color: #66d9ef;
+  color: #ebbbff;
 }
 pre .function,
 pre .class .params {
@@ -3977,18 +3977,18 @@ pre .class .params {
 pre .params,
 pre .function,
 pre .css .value {
-  color: #fd971f;
+  color: #ffc58f;
 }
 pre .css ~ * .tag,
 pre .at_rule,
 pre .preprocessor {
-  color: #f92672;
+  color: #ffeead;
 }
 pre .built_in,
 pre .class,
 pre .css ~ * .class,
 pre .function {
-  color: #a6e22e;
+  color: #bbdaff;
 }
 pre .value,
 pre .number {
@@ -3996,7 +3996,7 @@ pre .number {
 }
 pre .id,
 pre .css ~ * .id {
-  color: #fd971f;
+  color: #ffc58f;
 }
 pre .link_label,
 pre .code,

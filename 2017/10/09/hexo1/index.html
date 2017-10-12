@@ -5,18 +5,28 @@
   
   <title>使用Hexo+GitHub搭建个人博客（一） | PengBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.安装git Git-2.11.0.3-32-bit.exe Git-2.11.0.3-64-bit.exe 选择下载对应自己电脑的版本即可 2.安装nodejs node-v4.2.3-x86.msi node-v4.2.3-x64.msi 安装完成后，打开cmd命令输入 git --version node -v npm -v 可以依次查看到git，nodejs和npm的版本 3.安装he">
+  <meta name="description" content="写在前面 最近自己使用Hexo+GitHub搭建了自己的个人博客，在搭建时也看了很多博客，踩了不少坑，所以记录一些自己的心得，希望可以帮助到更多人。">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Hexo+GitHub搭建个人博客（一）">
 <meta property="og:url" content="http://yoursite.com/2017/10/09/hexo1/index.html">
 <meta property="og:site_name" content="PengBlog">
-<meta property="og:description" content="1.安装git Git-2.11.0.3-32-bit.exe Git-2.11.0.3-64-bit.exe 选择下载对应自己电脑的版本即可 2.安装nodejs node-v4.2.3-x86.msi node-v4.2.3-x64.msi 安装完成后，打开cmd命令输入 git --version node -v npm -v 可以依次查看到git，nodejs和npm的版本 3.安装he">
+<meta property="og:description" content="写在前面 最近自己使用Hexo+GitHub搭建了自己的个人博客，在搭建时也看了很多博客，踩了不少坑，所以记录一些自己的心得，希望可以帮助到更多人。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-11T09:30:26.698Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkf7z1croej30kr064dg2.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkf84xk4hdj30l80eumyc.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfbgw9f6nj30tn0m1dkb.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfbj0jmqgj30ru0ki75s.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfbl1n7wlj30xy0lo74w.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfeip8oqwj30qo0icgmn.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfekumpc8j30qo0icmy3.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfercnw68j30qo0icdjz.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkfeu8cvs6j30sp0m0mz6.jpg">
+<meta property="og:updated_time" content="2017-10-12T07:29:56.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo+GitHub搭建个人博客（一）">
-<meta name="twitter:description" content="1.安装git Git-2.11.0.3-32-bit.exe Git-2.11.0.3-64-bit.exe 选择下载对应自己电脑的版本即可 2.安装nodejs node-v4.2.3-x86.msi node-v4.2.3-x64.msi 安装完成后，打开cmd命令输入 git --version node -v npm -v 可以依次查看到git，nodejs和npm的版本 3.安装he">
+<meta name="twitter:description" content="写在前面 最近自己使用Hexo+GitHub搭建了自己的个人博客，在搭建时也看了很多博客，踩了不少坑，所以记录一些自己的心得，希望可以帮助到更多人。">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/005IUANsly1fkf7z1croej30kr064dg2.jpg">
   
     <link rel="alternative" href="/atom.xml" title="PengBlog" type="application/atom+xml">
   
@@ -244,13 +254,29 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <blockquote>
-<p>1.安装git<br> <a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-32-bit.exe" target="_blank" rel="external">Git-2.11.0.3-32-bit.exe</a><br> <a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-64-bit.exe" target="_blank" rel="external">Git-2.11.0.3-64-bit.exe</a><br> 选择下载对应自己电脑的版本即可</p>
-<p>2.安装nodejs<br> <a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x86.msi" target="_blank" rel="external">node-v4.2.3-x86.msi</a><br> <a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="external">node-v4.2.3-x64.msi</a><br> 安装完成后，打开cmd命令输入<br> <code>git --version</code><br> <code>node -v</code><br> <code>npm -v</code><br> 可以依次查看到git，nodejs和npm的版本</p>
-<p>3.安装hexo<br> 上述操作无误的话，使用npm命令下载安装hexo，打开cmd输入<br> <code>npm install hexo-cli -g</code><br> 安装完成后，输入<br> <code>hexo -v</code><br> 检测是否安装成功</p>
-<p>4.创建GitHub Pages仓库<br> 全部安装完成后，就需要在github创建远程库<br> 注册登录后点击“+”号，选择New repository<br> 然后在Repository name中写入username.github.io(username是你的github用户名，必须完全一致)<br> 最后Create repository就创建完成了<br> 现在我们就可以在浏览器输入username.github.io访问网站<br> 当然，现在会出现404的页面，因为我们还没有配置页面 </p>
-<p>5.创建hexo工程<br> 在电脑中创建一个空的文件夹，用来hexo工程<br> 右键这个文件夹，选择Git Bash Here，git窗口启动后输入<br> <code>npm install hexo --save</code><br> 然后初始化hexo，依次输入<br> <code>hexo init</code><br> <code>npm install</code><br> <code>hexo g</code><br> 执行完成后，hexo就初始化完毕了，我们可以输入<br> <code>hexo s</code><br> 启动一个本地服务器，打开浏览器输入<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>就可以看到我们现在的博客页面</p>
-<p>6.把hexo上传到github<br> 接下来把我们本地的hexo项目上传到github我们就可以通过username.github.io访问到我们的个人博客了<br> 要怎么做呢？首先还是在hexo文件夹下Git Bash Here，输入<br> <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br> 清空并生成最新的我们需要上传的文件<br> 然后我们需要下载一个GitHub for windows,然后登录github账号<br> 登陆后选择clone repository，然后把我们之前在github创建的username.github.io仓库clone到本地<br> 现在clone下来的仓库应该是空的，因为我们没有上传任何东西<br> 然后我们把hexo文件夹下的public中的所有文件和文件夹复制粘贴到我们clone下的仓库目录中<br> 然后打开GitHub for windows，会发现Changes里面会有我们刚刚复制进来的文件和文件夹<br> 接下来在下面的Summary输入内容，点击Commit to master提交本地<br> 最后点击Fetch origin按钮把我们刚刚提交的内容同步到github仓库中<br> 现在我们打开github查看是否有我们刚刚上传的文件<br> 如果没有问题的话，打开浏览器输入username.github.io就可以看到我们的个人博客了</p>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a><strong>写在前面</strong></h3><blockquote>
+<p>最近自己使用Hexo+GitHub搭建了自己的个人博客，在搭建时也看了很多博客，踩了不少坑，所以记录一些自己的心得，希望可以帮助到更多人。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><blockquote>
+<p><a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-32-bit.exe" target="_blank" rel="external">Git-2.11.0.3-32-bit.exe</a><br>  <a href="https://github.com/git-for-windows/git/releases/download/v2.11.0.windows.3/Git-2.11.0.3-64-bit.exe" target="_blank" rel="external">Git-2.11.0.3-64-bit.exe</a><br>  选择下载安装对应自己电脑的版本即可</p>
+</blockquote>
+<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><blockquote>
+<p><a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x86.msi" target="_blank" rel="external">node-v4.2.3-x86.msi</a><br>  <a href="https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="external">node-v4.2.3-x64.msi</a><br>  安装完成后，打开cmd窗口依次输入下列命令，可以查看到git，nodejs和npm的版本<br>  <code>git --version</code><br>  <code>node -v</code><br>  <code>npm -v</code><br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkf7z1croej30kr064dg2.jpg" alt="hexo1-01" title="hexo1-01.png"></p>
+</blockquote>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><blockquote>
+<p>上述操作无误的话，使用npm命令下载安装hexo，打开cmd输入<br>  <code>npm install hexo-cli -g</code><br>  安装完成后，输入<br>  <code>hexo -v</code><br>  检测是否安装成功<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkf84xk4hdj30l80eumyc.jpg" alt="hexo1-02" title="hexo1-02.png"></p>
+</blockquote>
+<h3 id="创建GitHub-Pages仓库"><a href="#创建GitHub-Pages仓库" class="headerlink" title="创建GitHub Pages仓库"></a>创建GitHub Pages仓库</h3><blockquote>
+<p>全部安装完成后，就需要在github创建远程仓库<br>  进入<a href="https://github.com/" target="_blank" rel="external">github</a>官网，注册登录后点击“+”号，选择New repository<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfbgw9f6nj30tn0m1dkb.jpg" alt="hexo1-03" title="hexo1-03.png"><br>  然后在Repository name中写入username.github.io(username是你的github用户名，必须完全一致，下同)<br>  最后Create repository就创建完成了<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfbj0jmqgj30ru0ki75s.jpg" alt="hexo1-04" title="hexo1-04.png"><br>  现在我们就可以在浏览器输入username.github.io访问网站<br>  当然，现在会出现404的页面，因为我们还没有配置页面<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfbl1n7wlj30xy0lo74w.jpg" alt="hexo1-05" title="hexo1-05.png"></p>
+</blockquote>
+<h3 id="创建hexo工程"><a href="#创建hexo工程" class="headerlink" title="创建hexo工程"></a>创建hexo工程</h3><blockquote>
+<p>在电脑中创建一个空的文件夹，用来存放hexo工程<br>  右键这个文件夹，点击Git Bash Here，git窗口启动后，依次输入下列命令<br>  <code>hexo init</code><br>  <code>npm install</code><br>  <code>hexo g</code><br>  执行完成后，hexo就初始化完毕了，我们可以在git窗口输入<br>  <code>hexo s</code><br>  启动一个本地服务器，打开浏览器输入<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>就可以看到我们现在的博客页面<br>  如有问题，可以结合<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">hexo文档</a>来进行操作</p>
+</blockquote>
+<h3 id="上传到github仓库"><a href="#上传到github仓库" class="headerlink" title="上传到github仓库"></a>上传到github仓库</h3><blockquote>
+<p>接下来把我们本地的hexo项目上传到github我们就可以通过username.github.io访问到我们的个人博客了<br>  要怎么做呢？首先还是在hexo文件夹下Git Bash Here，输入<br>  <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code><br>  清空并生成最新的我们需要上传的文件<br>  然后我们需要下载一个<a href="https://github-windows.s3.amazonaws.com/GitHubSetup.exe" target="_blank" rel="external">GitHub for windows</a><br>  下载安装完成后，点击clone a repository按钮<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfeip8oqwj30qo0icgmn.jpg" alt="hexo1-6-1" title="hexo1-6-1.png"><br>  然后会让我们登录，使用github账号登陆后，再次点击clone a repository按钮，会出现下图这个页面<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfekumpc8j30qo0icmy3.jpg" alt="hexo1-6-2" title="hexo1-6-2.png"><br>  选择我们之前创建好的github仓库，然后选择一个本地路径，最后点击clone<br>  现在clone下来的仓库是一个空的文件夹，因为我们没有上传任何东西<br>  然后我们把hexo文件夹下的public中的所有文件和文件夹复制粘贴到我们clone下的仓库目录中<br>  然后打开GitHub for windows，会发现Changes里面会有我们刚刚复制进来的文件和文件夹<br>  接下来在下面的Summary输入内容，点击Commit to master提交本地<br>  最后点击Fetch origin按钮把我们刚刚提交的内容同步到github仓库中<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfercnw68j30qo0icdjz.jpg" alt="hexo1-6-3" title="hexo1-6-3.png"><br>  现在我们打开<a href="https://github.com/" target="_blank" rel="external">github</a>，进入我们之前创建好的仓库，查看是否有我们刚刚上传的文件<br>  <img src="https://ws1.sinaimg.cn/large/005IUANsly1fkfeu8cvs6j30sp0m0mz6.jpg" alt="hexo1-6-4" title="hexo1-6-4.png"><br>  我们的文件已经上传到了github仓库，现在打开浏览器输入username.github.io就可以看到我们的个人博客了</p>
+</blockquote>
+<h3 id="尾语"><a href="#尾语" class="headerlink" title="尾语"></a><strong>尾语</strong></h3><blockquote>
+<p> 现在我们已经搭建好了自己的个人博客，下一篇会教大家一些进阶的东西</p>
 </blockquote>
 
       
@@ -310,7 +336,7 @@
         <p><span>本文标题:</span><a href="/2017/10/09/hexo1/">使用Hexo+GitHub搭建个人博客（一）</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Peng 的个人博客">Peng</a></p>
         <p><span>发布时间:</span>2017年10月09日 - 14时43分</p>
-        <p><span>最后更新:</span>2017年10月11日 - 17时30分</p>
+        <p><span>最后更新:</span>2017年10月12日 - 15时29分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/10/09/hexo1/" title="使用Hexo+GitHub搭建个人博客（一）">http://yoursite.com/2017/10/09/hexo1/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/10/09/hexo1/　　作者: Peng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -343,7 +369,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装git"><span class="toc-number">2.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装nodejs"><span class="toc-number">3.</span> <span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装hexo"><span class="toc-number">4.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建GitHub-Pages仓库"><span class="toc-number">5.</span> <span class="toc-text">创建GitHub Pages仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建hexo工程"><span class="toc-number">6.</span> <span class="toc-text">创建hexo工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传到github仓库"><span class="toc-number">7.</span> <span class="toc-text">上传到github仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尾语"><span class="toc-number">8.</span> <span class="toc-text">尾语</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -509,6 +535,32 @@
 </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 

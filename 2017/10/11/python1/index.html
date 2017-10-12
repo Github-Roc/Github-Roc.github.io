@@ -5,18 +5,18 @@
   
   <title>糗事百科爬虫 | PengBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用python写一个糗事百科的爬虫，代码如下  # -*- coding:utf-8 -*-  import urllib.request import re   # 糗事百科爬虫类 class QSBK:     # 初始化方法，定义一些变量     def __init__(self):         # 当前页码         self.pageIndex = 1         #">
+  <meta name="description" content="python是一款功能强大，易学易用的编程语言，它的设计哲学是“优雅”、“明确”、“简单”，所以 人生苦短，我用python。  下面是用python写的一个爬去糗事百科段子的爬虫，可以爬到糗事百科的段子、作者及图片url。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="糗事百科爬虫">
 <meta property="og:url" content="http://yoursite.com/2017/10/11/python1/index.html">
 <meta property="og:site_name" content="PengBlog">
-<meta property="og:description" content="使用python写一个糗事百科的爬虫，代码如下  # -*- coding:utf-8 -*-  import urllib.request import re   # 糗事百科爬虫类 class QSBK:     # 初始化方法，定义一些变量     def __init__(self):         # 当前页码         self.pageIndex = 1         #">
+<meta property="og:description" content="python是一款功能强大，易学易用的编程语言，它的设计哲学是“优雅”、“明确”、“简单”，所以 人生苦短，我用python。  下面是用python写的一个爬去糗事百科段子的爬虫，可以爬到糗事百科的段子、作者及图片url。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-11T09:01:57.347Z">
+<meta property="og:updated_time" content="2017-10-12T07:41:30.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="糗事百科爬虫">
-<meta name="twitter:description" content="使用python写一个糗事百科的爬虫，代码如下  # -*- coding:utf-8 -*-  import urllib.request import re   # 糗事百科爬虫类 class QSBK:     # 初始化方法，定义一些变量     def __init__(self):         # 当前页码         self.pageIndex = 1         #">
+<meta name="twitter:description" content="python是一款功能强大，易学易用的编程语言，它的设计哲学是“优雅”、“明确”、“简单”，所以 人生苦短，我用python。  下面是用python写的一个爬去糗事百科段子的爬虫，可以爬到糗事百科的段子、作者及图片url。">
   
     <link rel="alternative" href="/atom.xml" title="PengBlog" type="application/atom+xml">
   
@@ -245,124 +245,9 @@
       
           
         <blockquote>
-<p>使用python写一个糗事百科的爬虫，代码如下</p>
+<p>python是一款功能强大，易学易用的编程语言，它的设计哲学是“优雅”、“明确”、“简单”，所以 人生苦短，我用python。<br>  下面是用python写的一个爬去糗事百科段子的爬虫，可以爬到糗事百科的段子、作者及图片url。<br><a id="more"></a></p>
 </blockquote>
-<pre><code># -*- coding:utf-8 -*-
-
-import urllib.request
-import re
-
-
-# 糗事百科爬虫类
-class QSBK:
-    # 初始化方法，定义一些变量
-    def __init__(self):
-        # 当前页码
-        self.pageIndex = 1
-        # 模拟浏览器的user_agent
-        self.user_agent = &apos;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36&apos;
-        # 初始化headers
-        self.headers = {&apos;User-Agent&apos;: self.user_agent}
-        # 存放每页段子的列表，每一个元素是每一页的段子们
-        self.stories = []
-        # 保存数据的文件
-        self.file = open(&quot;qsbk.txt&quot;, &quot;w&quot;, encoding=&apos;utf-8&apos;)
-
-    def __del__(self):
-        self.file.close()
-
-    # 传入某一页的索引获得页面代码
-    def getPage(self, pageIndex):
-        try:
-            url = &apos;http://www.qiushibaike.com/hot/page/&apos; + str(pageIndex)
-            # 构建请求的request
-            req = urllib.request.Request(url, headers=self.headers)
-            # 利用urlopen获取页面代码
-            response = urllib.request.urlopen(req)
-            # 将页面转化为UTF-8编码
-            pageCode = response.read().decode(&apos;utf-8&apos;)
-            return pageCode
-        except Exception as e:
-            if hasattr(e, &quot;reason&quot;):
-                print(u&quot;连接糗事百科失败,错误原因：&quot;, e.reason)
-                return None
-
-    # 传入某一页代码，返回本页不带图片的段子列表
-    def getPageItems(self, pageIndex):
-        pageCode = self.getPage(pageIndex)
-        if not pageCode:
-            print(&quot;页面加载失败....&quot;)
-            return None
-        pattern = re.compile(&apos;&lt;div.*?class=&quot;author.*?&gt;.*?&lt;a.*?&lt;/a&gt;.*?&lt;a.*?&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;a href=&quot;(.*?)&quot;.*?&lt;div.*?class=&quot;content&quot;.*?&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;(.*?)&lt;/a&gt;(.*?)&lt;div class=&quot;stats.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)
-        # print pageCode
-        items = re.findall(pattern, pageCode)
-        # 用来存储每页的段子们
-        pageStories = []
-        # 遍历正则表达式匹配的信息
-        for item in items:
-            # 判断是否已经展示全文
-            isAll = re.search(&apos;&lt;span class=&quot;contentForAll&quot;&gt;&apos;, item[3])
-            content = item[2].strip()
-            if isAll is not None:
-                # 从段子详情页获取完整的段子
-                url = &apos;http://www.qiushibaike.com&apos;+item[1]
-                requ = urllib.request.Request(url, headers=self.headers)
-                response = urllib.request.urlopen(requ)
-                contentCode = response.read().decode(&apos;utf-8&apos;)
-                contentPattern = re.compile(&apos;&lt;div class=&quot;content&quot;&gt;(.*?)&lt;/div&gt;&apos;, re.S)
-                content = re.findall(contentPattern, contentCode)[0].strip()
-                content.replace(&quot;\n&quot;, &quot;&lt;br/&gt;&quot;)
-            # 判断是否有图片
-            imgSrc = re.findall(&apos;&lt;img src=&quot;//(.*?)&quot;&apos;, item[4])
-            if not imgSrc:
-                # 不包含图片
-                # 作者 内容 图片链接 赞数
-                pageStories.append([item[0].strip(), content, &quot;&quot;, item[5].strip()])
-            else:
-                pageStories.append([item[0].strip(), content, imgSrc[0].strip(), item[5].strip()])
-        return pageStories
-
-    # 加载并提取页面的内容，加入到列表中
-    def loadPage(self):
-        # 获取新一页
-        pageStories = self.getPageItems(self.pageIndex)
-        # 将该页的段子存放到全局list中
-        if pageStories:
-            self.stories.append(pageStories)
-
-    def printStory(self, pageStories, page):
-        # 遍历一页的段子
-        for story in pageStories:
-            if story[2] == &quot;&quot;:
-                # 无图段子
-                self.file.write(u&apos;{&quot;author&quot;:&quot;%s&quot;,&quot;content&quot;:&quot;%s&quot;,&quot;type&quot;:&quot;110&quot;}\n&apos; % (story[0], story[1]))
-                print(u&quot;第%d页\t发布人:%s\n%s\n赞:%s\n&quot; % (page, story[0], story[1], story[3]))
-            else:
-                # 有图段子
-                self.file.write(u&apos;{&quot;author&quot;:&quot;%s&quot;,&quot;content&quot;:&quot;%s&quot;,&quot;img&quot;:&quot;%s&quot;,&quot;type&quot;:&quot;100&quot;}\n&apos; % (story[0], story[1], story[2]))
-                print(u&quot;第%d页\t发布人:%s\n%s\n图片:%s\n赞:%s\n&quot; % (page, story[0], story[1], story[2], story[3]))
-
-    # 开始方法
-    def start(self):
-        print(u&quot;正在读取糗事百科,请稍后...&quot;)
-        while self.pageIndex &lt;= 13:
-            # 加载内容
-            self.loadPage()
-            # 从全局list中获取一页的段子
-            pageStories = self.stories[0]
-            # 将全局list中第一个元素删除，因为已经取出
-            del self.stories[0]
-            # 输出该页的段子
-            self.printStory(pageStories, self.pageIndex)
-            # 获取完之后页码索引加一，表示下次读取下一页
-            self.pageIndex += 1
-        else:
-            print(&quot;完毕&quot;)
-
-if __name__ == &apos;__main__&apos;:
-    spider = QSBK()
-    spider.start()
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line"># -*- coding:utf-8 -*-</div><div class="line"></div><div class="line">import urllib.request</div><div class="line">import re</div><div class="line"></div><div class="line"></div><div class="line"># 糗事百科爬虫类</div><div class="line">class QSBK:</div><div class="line">	# 初始化方法，定义一些变量</div><div class="line">	def __init__(self):</div><div class="line">		# 当前页码</div><div class="line">		self.pageIndex = 1</div><div class="line">		# 模拟浏览器的user_agent</div><div class="line">		self.user_agent = &apos;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36&apos;</div><div class="line">		# 初始化headers</div><div class="line">		self.headers = &#123;&apos;User-Agent&apos;: self.user_agent&#125;</div><div class="line">		# 存放每页段子的列表，每一个元素是每一页的段子们</div><div class="line">		self.stories = []</div><div class="line">		# 保存数据的文件</div><div class="line">		self.file = open(&quot;qsbk.txt&quot;, &quot;w&quot;, encoding=&apos;utf-8&apos;)</div><div class="line"></div><div class="line">	def __del__(self):</div><div class="line">		self.file.close()</div><div class="line"></div><div class="line">	# 传入某一页的索引获得页面代码</div><div class="line">	def getPage(self, pageIndex):</div><div class="line">		try:</div><div class="line">			url = &apos;http://www.qiushibaike.com/hot/page/&apos; + str(pageIndex)</div><div class="line">			# 构建请求的request</div><div class="line">			req = urllib.request.Request(url, headers=self.headers)</div><div class="line">			# 利用urlopen获取页面代码</div><div class="line">			response = urllib.request.urlopen(req)</div><div class="line">			# 将页面转化为UTF-8编码</div><div class="line">			pageCode = response.read().decode(&apos;utf-8&apos;)</div><div class="line">			return pageCode</div><div class="line">		except Exception as e:</div><div class="line">			if hasattr(e, &quot;reason&quot;):</div><div class="line">				print(u&quot;连接糗事百科失败,错误原因：&quot;, e.reason)</div><div class="line">				return None</div><div class="line"></div><div class="line">	# 传入某一页代码，返回本页不带图片的段子列表</div><div class="line">	def getPageItems(self, pageIndex):</div><div class="line">		pageCode = self.getPage(pageIndex)</div><div class="line">		if not pageCode:</div><div class="line">			print(&quot;页面加载失败....&quot;)</div><div class="line">			return None</div><div class="line">		pattern = re.compile(&apos;&lt;div.*?class=&quot;author.*?&gt;.*?&lt;a.*?&lt;/a&gt;.*?&lt;a.*?&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;a href=&quot;(.*?)&quot;.*?&lt;div.*?class=&quot;content&quot;.*?&gt;.*?&lt;span&gt;(.*?)&lt;/span&gt;(.*?)&lt;/a&gt;(.*?)&lt;div class=&quot;stats.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)</div><div class="line">		# print pageCode</div><div class="line">		items = re.findall(pattern, pageCode)</div><div class="line">		# 用来存储每页的段子们</div><div class="line">		pageStories = []</div><div class="line">		# 遍历正则表达式匹配的信息</div><div class="line">		for item in items:</div><div class="line">			# 判断是否已经展示全文</div><div class="line">			isAll = re.search(&apos;&lt;span class=&quot;contentForAll&quot;&gt;&apos;, item[3])</div><div class="line">			content = item[2].strip()</div><div class="line">			if isAll is not None:</div><div class="line">				# 从段子详情页获取完整的段子</div><div class="line">				url = &apos;http://www.qiushibaike.com&apos;+item[1]</div><div class="line">				requ = urllib.request.Request(url, headers=self.headers)</div><div class="line">				response = urllib.request.urlopen(requ)</div><div class="line">				contentCode = response.read().decode(&apos;utf-8&apos;)</div><div class="line">				contentPattern = re.compile(&apos;&lt;div class=&quot;content&quot;&gt;(.*?)&lt;/div&gt;&apos;, re.S)</div><div class="line">				content = re.findall(contentPattern, contentCode)[0].strip()</div><div class="line">				content.replace(&quot;\n&quot;, &quot;&lt;br/&gt;&quot;)</div><div class="line">			# 判断是否有图片</div><div class="line">			imgSrc = re.findall(&apos;&lt;img src=&quot;//(.*?)&quot;&apos;, item[4])</div><div class="line">			if not imgSrc:</div><div class="line">				# 不包含图片</div><div class="line">				# 作者 内容 图片链接 赞数</div><div class="line">				pageStories.append([item[0].strip(), content, &quot;&quot;, item[5].strip()])</div><div class="line">			else:</div><div class="line">				pageStories.append([item[0].strip(), content, imgSrc[0].strip(), item[5].strip()])</div><div class="line">		return pageStories</div><div class="line"></div><div class="line">	# 加载并提取页面的内容，加入到列表中</div><div class="line">	def loadPage(self):</div><div class="line">		# 获取新一页</div><div class="line">		pageStories = self.getPageItems(self.pageIndex)</div><div class="line">		# 将该页的段子存放到全局list中</div><div class="line">		if pageStories:</div><div class="line">			self.stories.append(pageStories)</div><div class="line"></div><div class="line">	def printStory(self, pageStories, page):</div><div class="line">		# 遍历一页的段子</div><div class="line">		for story in pageStories:</div><div class="line">			if story[2] == &quot;&quot;:</div><div class="line">				# 无图段子</div><div class="line">				self.file.write(u&apos;&#123;&quot;author&quot;:&quot;%s&quot;,&quot;content&quot;:&quot;%s&quot;,&quot;type&quot;:&quot;110&quot;&#125;\n&apos; % (story[0], story[1]))</div><div class="line">				print(u&quot;第%d页\t发布人:%s\n%s\n赞:%s\n&quot; % (page, story[0], story[1], story[3]))</div><div class="line">			else:</div><div class="line">				# 有图段子</div><div class="line">				self.file.write(u&apos;&#123;&quot;author&quot;:&quot;%s&quot;,&quot;content&quot;:&quot;%s&quot;,&quot;img&quot;:&quot;%s&quot;,&quot;type&quot;:&quot;100&quot;&#125;\n&apos; % (story[0], story[1], story[2]))</div><div class="line">				print(u&quot;第%d页\t发布人:%s\n%s\n图片:%s\n赞:%s\n&quot; % (page, story[0], story[1], story[2], story[3]))</div><div class="line"></div><div class="line">	# 开始方法</div><div class="line">	def start(self):</div><div class="line">		print(u&quot;正在读取糗事百科,请稍后...&quot;)</div><div class="line">		while self.pageIndex &lt;= 13:</div><div class="line">			# 加载内容</div><div class="line">			self.loadPage()</div><div class="line">			# 从全局list中获取一页的段子</div><div class="line">			pageStories = self.stories[0]</div><div class="line">			# 将全局list中第一个元素删除，因为已经取出</div><div class="line">			del self.stories[0]</div><div class="line">			# 输出该页的段子</div><div class="line">			self.printStory(pageStories, self.pageIndex)</div><div class="line">			# 获取完之后页码索引加一，表示下次读取下一页</div><div class="line">			self.pageIndex += 1</div><div class="line">		else:</div><div class="line">			print(&quot;完毕&quot;)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">	spider = QSBK()</div><div class="line">	spider.start()</div></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -420,7 +305,7 @@ if __name__ == &apos;__main__&apos;:
         <p><span>本文标题:</span><a href="/2017/10/11/python1/">糗事百科爬虫</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Peng 的个人博客">Peng</a></p>
         <p><span>发布时间:</span>2017年10月11日 - 16时57分</p>
-        <p><span>最后更新:</span>2017年10月11日 - 17时01分</p>
+        <p><span>最后更新:</span>2017年10月12日 - 15时41分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/10/11/python1/" title="糗事百科爬虫">http://yoursite.com/2017/10/11/python1/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/10/11/python1/　　作者: Peng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -615,6 +500,32 @@ if __name__ == &apos;__main__&apos;:
 </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
 </script>
 
 
